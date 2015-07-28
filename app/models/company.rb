@@ -3,4 +3,6 @@ class Company < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  validates :name, presence: true, uniqueness: true
+  validates :rfc, length: { maximum: 13 }, uniqueness: true, presence: true
 end
