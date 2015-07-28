@@ -31,7 +31,7 @@ class RegistroCompanyController < ApplicationController
 
   def registrar
   	@company = Company.new company_params
-  	if params[:tipo] == 0
+  	if params[:tipo] == '0'
   		if params[:rfc] =~ /[A-Z]{4}[0-9]{6}[A-Z0-9]{2,3}/
   			if @company.save!
   				render json: {status:0, id:@company.id}
@@ -41,7 +41,7 @@ class RegistroCompanyController < ApplicationController
   		else
   			render json: {status:2}
   		end
-  	elsif params[:tipo] == 1
+  	elsif params[:tipo] == '1'
   		if params[:rfc] =~ /[A-Z]{3}[0-9]{6}[A-Z0-9]{2,3}/
   			if @company.save!
   				render json: {status:0,id:@company.id}
@@ -67,7 +67,7 @@ class RegistroCompanyController < ApplicationController
 
   protected
   def company_params
-  	params.permit(:name, :email, :rfc)
+  	params.permit(:name, :email, :rfc, :password)
   end
   def address_params
   	params.permit(:street, :numExt, :numInt, :colonia, :delegacion, :state, :city, :cp)
