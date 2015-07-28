@@ -1,6 +1,6 @@
 class RegistroCompanyController < ApplicationController
 	 protect_from_forgery with: :null_session
-  before_action :check_auth
+  # before_action :check_auth
   respond_to :json
    rescue_from(ActiveRecord::RecordInvalid) do |invalid|
    response = {status: 'error', fields: invalid.record.errors}
@@ -14,10 +14,10 @@ class RegistroCompanyController < ApplicationController
 
   def check_auth
     authenticate_or_request_with_http_basic do |username,password|
-      resource = Manager.find_by_email(username) 
+      resource = Comapny.find_by_email(username) 
       if resource != nil
         if resource.valid_password?(password)
-        sign_in :manager, resource
+        sign_in :company, resource
         $identi = resource
         else
           render :json => {status: 0}
