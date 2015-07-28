@@ -9,6 +9,17 @@ Rails.application.configure do
   # and those relying on copy on write to perform better.
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
+  config.action_mailer.default_url_options = { :host => 'paytag.herokuapp.com' }
+  config.action_mailer.delivery_method = :smtp
+  ActionMailer::Base.smtp_settings = {
+  :user_name => ENV['SEND_USER'],
+  :password => ENV['SEND_PASS'],
+  :domain => 'yourdomain.com',
+  :address => 'smtp.sendgrid.net',
+  :port => 587,
+  :authentication => :plain,
+  :enable_starttls_auto => true
+}
 
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false

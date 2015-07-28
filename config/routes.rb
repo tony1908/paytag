@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :buyers
   get 'home/index'
 
   devise_for :companies
@@ -11,6 +12,10 @@ Rails.application.routes.draw do
   controller :registro_company do
     post '/movil/comapañia/registrar' => :registrar
     post '/movil/comapañia/direccion' => :direccion
+  end 
+
+  controller :registro_comprador do
+    post '/movil/comprador/registrar' => :registrar
   end 
 
   # Example of regular route:
