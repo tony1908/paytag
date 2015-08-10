@@ -21,6 +21,7 @@ class RecordsUsersController < ApplicationController
   def records
   	@records = Record.where(user_id:$identi.id)
   	render json: @records.as_json(:include => {:branch => {:include => :address}})
+  	# render json: @records.as_json(:include => {:card => {:include => {:branch => {:include => address}}}})
   end
 
   def record

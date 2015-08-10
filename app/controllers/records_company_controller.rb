@@ -33,4 +33,16 @@ class RecordsCompanyController < ApplicationController
   	@company = Company.find($identi.id)
   	render json: @company.to_json(:include => {:records => {:branch => {:include => :address}}})
   end
+
+  # def
+ #  		@record = Record.new 'user_id' => $identi.id, 'branch_id' => params[:branch], 'monto' => params[:monto], 'description' => params[:description], 'card_id' => @card.id
+ #  		if @record.save!
+ #  			render json: {status:0}
+ #  		else
+ #  			render json: {status:1}
+ #  		end
+	# end
+
+	# rails g model record user_id:integer, branch_id:integer monto:float, description:text, card_id:integer
+
 end
